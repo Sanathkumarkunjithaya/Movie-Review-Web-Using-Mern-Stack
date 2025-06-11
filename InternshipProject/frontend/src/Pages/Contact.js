@@ -1,52 +1,124 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import contact from '../Images/contact.jpg';
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import CustomNavbar from "../Components/Navbar";
 import Footer from "../Components/footer";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    subject: "",
     message: "",
   });
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic here to handle the form submission, e.g., sending an email or saving to a database
     console.log(formData);
+    alert("Message submitted successfully!");
+    setFormData({ name: "", subject: "", message: "" });
   };
 
   return (
     <>
-    <CustomNavbar/>
-    <div
-      style={{
-        backgroundImage: `url(${contact})`, // Replace with your image URL
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh", // Ensure the background covers the entire viewport height
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <Container>
-        <Row>
-          <Col md={{ span: 6, offset: 3 }}>
-            <h2>Contact Us</h2>
-            <h3>Email : Vikas@gmail.com</h3>
-            <h3>Mobile : 7676253577</h3>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-    <Footer/>
+      <style>
+        {`
+          .custom-input {
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+          }
+          .custom-input::placeholder {
+            color: #ccc;
+            opacity: 1;
+          }
+        `}
+      </style>
+
+      <CustomNavbar />
+      <div
+        style={{
+          background: "linear-gradient(to right, #000000, #1c1c1c)",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          paddingTop: "40px",
+        }}
+      >
+        <Container>
+          <Row className="justify-content-center">
+            <Col md={8} lg={6}>
+              <Card
+                className="p-4 shadow"
+                style={{
+                  backgroundColor: "#111",
+                  color: "#fff",
+                  borderRadius: "20px",
+                }}
+              >
+                <h2 className="text-center mb-4" style={{ color: "#0ff" }}>
+                  Let's Connect
+                </h2>
+                <p
+                  className="text-center mb-4"
+                  style={{ fontSize: "14px", color: "#aaa" }}
+                >
+                  Have feedback or want to collaborate? Drop a message below!
+                </p>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="custom-input"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="subject"
+                      placeholder="Subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="custom-input"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      name="message"
+                      placeholder="Your Message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      className="custom-input"
+                    />
+                  </Form.Group>
+                  <Button
+                    type="submit"
+                    variant="outline-info"
+                    className="w-100"
+                    style={{ borderRadius: "10px" }}
+                  >
+                    Send Message
+                  </Button>
+                </Form>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Footer />
     </>
   );
 };

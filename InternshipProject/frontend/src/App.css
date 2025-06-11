@@ -27,7 +27,47 @@
 .App-link {
   color: #61dafb;
 }
+.glass-navbar {
+  background: rgba(0, 0, 0, 0.75);
+  /* Darker glass */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  /* Make sure it’s above all content */
+}
 
+.navbar-brand:hover,
+.nav-link:hover,
+.nav-dropdown:hover {
+  color: #f39c12 !important;
+  transition: 0.3s ease-in-out;
+}
+
+.brand-text {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0px 0px 8px #ffd700;
+}
+
+.navbar {
+  transition: background 0.3s ease-in-out;
+}
+.nav-link.btn-custom {
+  background-color: #00b894;
+  color: white !important;
+  border-radius: 20px;
+  padding: 6px 14px;
+  margin-left: 8px;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.nav-link.btn-custom:hover {
+  background-color: #009475;
+  text-decoration: none;
+  color: #fff !important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
